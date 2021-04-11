@@ -198,18 +198,20 @@ def question2():
     print(evenList)
     """
     
-    # SINGLE-STEP SLIGHTLY LESS FUN ALGORITHM WITH THE COOL NEW TECHNOLOGY CALLED LIST COMPREHENSION
+    # SINGLE-STEP SLIGHTLY LESS FUN ALGORITHM WITH THE COOL NEW TECHNOLOGY CALLED LIST COMPREHENSION™
     # Slightly less fun due to using single step
-    # Mod expensive, doing mod at every iteration is bad
+    # Mod is expensive, doing mod at every iteration is bad
     # In the class we're told that this method was cool. And it did look cool.
     # If something is told to be cool and then also looks cool then it must be cool
     # So I'm doing that. Partially cause I did that and it feels quite satisfying to do the whole thing in one line
     # evenlist = [number for number in range(firstIndex, lastIndex + 1) if number % 2 == 0]
     
-    # MULTI-STEP GENUINELY FUN ALGORITHM WITH THE COOL NEW TECHNOLOGY CALLED LIST COMPREHENSION
+    # MULTI-STEP GENUINELY FUN ALGORITHM WITH THE COOL NEW TECHNOLOGY CALLED LIST COMPREHENSION™
     # Genuinely Fun™
     # It's basically the idea above, however this time I'm combining that with the odd number shifting I did above with the firstIndex
     # This way I can skip the second if part in comprehension and just create the list by range(firstIndex, lastIndex, stepValue)
+	# That if is gonna run 50% of the time. Skipping that if means skipping a whole bunch of cache misses so in theory this should be quite useful
+	# for larger datasets
     
     evenlist = [number for number in range(firstIndex, lastIndex + 1, 2)]
     print(evenlist)
