@@ -192,6 +192,8 @@ def updateUser(users, username="", password=""):
     print("Password updated")
 
 def saveUsers(users, file):
+    file.close()
+    file = open("userdb.json", "w")
     json.dump(users, file)
     return
     
@@ -412,23 +414,31 @@ def listAccounts(users):
     
 # MAIN
 def main():
+    file = None
     try:
-        file = open("userdb.json", "w+")
+        file = open("userdb.json", "r")
     except IOError:
         print("Unable to access Database. Check the access parameters of the app")
         return
     
-    users = {""}
+    # REALLY dirty solution but I don't know what's the best way to handle
+    # json load operation on an empty file
+    # the library, for some reason, doesn't return a None object, just throws an exception
+    users = {}  # users is a dict of "username : password"
     try:
-        users = json.load(file) # users is a dict of "username : password"
+        users = json.load(file)
     except json.JSONDecodeError:
-        # REALLY dirty solution but I don't know what's the best way to handle
-        # json load operation on an empty file
+        # Fails if the empty is empty, so I close it an reopen it as readable to insert some dummy value
+        # This should happen only on the first time this is initialized
+        file.close()
+        file = open("userdb.json", "w")
+        users = {} #dummy value
         json.dump(users, file)
     finally:
-        users = json.load(file)
-    
-    
+        file.close()
+        file = open("userdb.json", "r")
+        users = json.load(file) # users is a dict of "username : password"
+
     try:
         # Load existing user data into memory from the db    
         mainMenuString = buildMainMenuString()
