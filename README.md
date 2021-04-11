@@ -13,7 +13,7 @@ Introduction to Python
 
 ## Requirements
 ```
-Not required but will be as I keep working on these:
+Not required but will be as I keep working on these after the homework deadline:
 regex
 from enum -> IntFlag, auto
 tkinter
