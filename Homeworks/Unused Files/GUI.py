@@ -1,9 +1,10 @@
 import tkinter as tk
 
-import HW1
+import Final_Project_GUI as quiz
 
 
 def showGUI():
+
     window = tk.Tk()
     
     # window title
@@ -19,8 +20,8 @@ def showGUI():
     mainMenu = tk.Menu(window)
     homeworkSelectionMenu = tk.Menu(mainMenu, tearoff=0)
     questionSelectionMenu = tk.Menu(homeworkSelectionMenu, tearoff=0)
-    questionSelectionMenu.add_command(label="Question 1", command=HW1.question1)
-    questionSelectionMenu.add_command(label="Question 2", command=HW1.question2)
+    questionSelectionMenu.add_command(label="Question 1")
+    questionSelectionMenu.add_command(label="Question 2")
     homeworkSelectionMenu.add_cascade(label="First Homework", menu=questionSelectionMenu)
     homeworkSelectionMenu.add_separator()
     mainMenu.add_cascade(label="Homework Selection", menu=homeworkSelectionMenu)
@@ -31,25 +32,32 @@ def showGUI():
     homeworkSelectionMenu.add_command(label="Final Project")
     
     window.config(menu=mainMenu)
-    question2Window = tk.Frame(window)
-    l = tk.Label(question2Window, text = "The answer: ")
-    l.pack()
+    
+    # Get questions
+    questions = quiz.main()
+        
+    quizWindow = tk.Frame(window, height = 20, width = 200)
+    quizWindow.grid(row = 3, column=2)
+    
+    quizWindow.pack()
+    
+    question = tk.Label(quizWindow, text = "quest").grid(row = 0, column = 0)
+    answers = tk.Label(quizWindow, text = "ans").grid(row = 1, column = 1)
     
     # HW1 windows
-    outputText = tk.Entry(question2Window)
-    outputText.pack()
-    outputText.insert(tk.END, "Hey")    
+    outputText = tk.Entry(quizWindow, width = 50).grid(row = 2, column = 1)
     
-    question2Window.pack()
-    
-    showbutton = tk.Button(window, text = "Show", command = lambda: question2Window.pack())
-    hidebutton = tk.Button(window, text = "Hide", command = lambda: question2Window.pack_forget())
-    showbutton.pack()
-    hidebutton.pack()
+    showbutton = tk.Button(quizWindow, text = "Next", width = 25)
+    hidebutton = tk.Button(quizWindow, text = "Prev", width = 25)
+    showbutton.grid(row = 3, column = 2)
+    hidebutton.grid(row = 3, column = 0)
 
-    
-    inp = outputText.get()
-    print(inp)
+    isDone = False
+    counter = 0
+    while not isDone:
+        anan = questions[counter]
+        question["text"] = anan
+        
     
     #main render loop
     window.mainloop()

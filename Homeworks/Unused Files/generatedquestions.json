@@ -1,0 +1,125 @@
+{
+    "response_code": 0,
+    "results": [
+        {
+            "category": "Sports",
+            "correct_answer": "Philadelphia Flyers",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "New York Rangers",
+                "Toronto Maple Leafs",
+                "Boston Bruins"
+            ],
+            "question": "Which of these teams isn&#039;t a member of the NHL&#039;s &quot;Original Six&quot; era?",
+            "type": "multiple"
+        },
+        {
+            "category": "General Knowledge",
+            "correct_answer": "Cabbage Patch Kids",
+            "difficulty": "easy",
+            "incorrect_answers": [
+                "Transformers",
+                "Care Bears",
+                "Rubik&rsquo;s Cube"
+            ],
+            "question": "Which best selling toy of 1983 caused hysteria, resulting in riots breaking out in stores?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Books",
+            "correct_answer": "George Eliot",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "George Orwell",
+                "George Bernard Shaw",
+                "George Saunders"
+            ],
+            "question": "What was the pen name of novelist, Mary Ann Evans?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Japanese Anime & Manga",
+            "correct_answer": "&#039;. . . the front tires slide so the car won&#039;t face the inside&#039;",
+            "difficulty": "hard",
+            "incorrect_answers": [
+                "&#039;. . . the wheels lose traction, making the car slide sideways&#039;",
+                "&#039;. . . the car oversteers through a curve, causing it to turn faster&#039;",
+                "&#039;. . . you turn a lot&#039;"
+            ],
+            "question": "In the anime Initial D, how does Takumi Fujiwara describe a drift?",
+            "type": "multiple"
+        },
+        {
+            "category": "Science & Nature",
+            "correct_answer": "Psychoanalysis",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "Cognitive-Behavioral Therapy",
+                "Theory of Gravity",
+                "Dialectical Behavior Therapy"
+            ],
+            "question": "What term is best associated with Sigmund Freud?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Music",
+            "correct_answer": "Safety Dance",
+            "difficulty": "easy",
+            "incorrect_answers": [
+                "Down Under",
+                "Who Can It Be Now?",
+                "It&#039;s a Mistake"
+            ],
+            "question": "Which one of these songs did the group &quot;Men At Work&quot; NOT make?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Comics",
+            "correct_answer": "Mega Man",
+            "difficulty": "easy",
+            "incorrect_answers": [
+                "Super Mario Brothers",
+                "Alex Kidd",
+                "Super Monkey Ball"
+            ],
+            "question": "Which universe crossover was introduced in the &quot;Sonic the Hedgehog&quot; comic issue #247?",
+            "type": "multiple"
+        },
+        {
+            "category": "General Knowledge",
+            "correct_answer": "D. G. Yuengling and Son, Inc",
+            "difficulty": "easy",
+            "incorrect_answers": [
+                "Anheuser Busch",
+                "Boston Beer Company",
+                "Miller Coors"
+            ],
+            "question": "Which American-owned brewery led the country in sales by volume in 2015?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Books",
+            "correct_answer": "Wessex",
+            "difficulty": "hard",
+            "incorrect_answers": [
+                "Barsetshire",
+                "Fulchester",
+                "Ambridge"
+            ],
+            "question": "Which fictional English county was the setting for Thomas Hardy&#039;s novels?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Books",
+            "correct_answer": "Steven Erikson",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "Ian Cameron Esslemont",
+                "George R. R. Martin",
+                "J. R. R. Tolkien"
+            ],
+            "question": "Who is the author of the series &quot;Malazan Book of the Fallen&quot;?",
+            "type": "multiple"
+        }
+    ]
+}
