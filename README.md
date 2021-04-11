@@ -13,9 +13,18 @@ Introduction to Python
 
 ## Requirements
 ```
-Some python libraries
-Some python libraries
-Some python libraries
+Not required but will be as I keep working on these:
+regex
+from enum -> IntFlag, auto
+tkinter
+---------
+Required:
+json
+sys
+random
+math
+requests
+from html -> unescape
 ```
 ---
 
