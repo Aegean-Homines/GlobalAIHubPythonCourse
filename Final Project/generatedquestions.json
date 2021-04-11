@@ -1,0 +1,125 @@
+{
+    "response_code": 0,
+    "results": [
+        {
+            "category": "Entertainment: Film",
+            "correct_answer": "Fay Wray",
+            "difficulty": "easy",
+            "incorrect_answers": [
+                "Jean Harlow",
+                "Vivien Leigh",
+                "Mae West"
+            ],
+            "question": "Who played the female lead in the 1933 film &quot;King Kong&quot;?",
+            "type": "multiple"
+        },
+        {
+            "category": "General Knowledge",
+            "correct_answer": "Cabbage Patch Kids",
+            "difficulty": "easy",
+            "incorrect_answers": [
+                "Transformers",
+                "Care Bears",
+                "Rubik&rsquo;s Cube"
+            ],
+            "question": "Which best selling toy of 1983 caused hysteria, resulting in riots breaking out in stores?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Video Games",
+            "correct_answer": "Mental Health Issues",
+            "difficulty": "hard",
+            "incorrect_answers": [
+                "Injuries",
+                "Disease",
+                "Danger to Others"
+            ],
+            "question": "Why was the character Trevor Philips discharged from the Air Force?",
+            "type": "multiple"
+        },
+        {
+            "category": "General Knowledge",
+            "correct_answer": "Pomodoro",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "Aglio",
+                "Cipolla",
+                "Peperoncino"
+            ],
+            "question": "What is the Italian word for &quot;tomato&quot;?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Video Games",
+            "correct_answer": "ZUN",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "SUN",
+                "RUN",
+                "PUN"
+            ],
+            "question": "The creator of the Touhou Project series is:",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Music",
+            "correct_answer": "Cinderella",
+            "difficulty": "easy",
+            "incorrect_answers": [
+                "Belle",
+                "Snow White",
+                "Pocahontas"
+            ],
+            "question": "Which Disney character sings the song &quot;A Dream is a Wish Your Heart Makes&quot;?",
+            "type": "multiple"
+        },
+        {
+            "category": "Animals",
+            "correct_answer": "Peregrine Falcon",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "Golden Eagle",
+                "Cheetah",
+                "Horsefly"
+            ],
+            "question": "What is the fastest animal?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Japanese Anime & Manga",
+            "correct_answer": "Charles",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "Bubsy",
+                "Kero",
+                "Usagi"
+            ],
+            "question": "In the 2011 TV anime series, &quot;THE iDOLM@STER&quot;, what was the name of Iori&#039;s stuffed toy bunny?",
+            "type": "multiple"
+        },
+        {
+            "category": "Entertainment: Video Games",
+            "correct_answer": "Ripper Roo",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "Papu Papu",
+                "Komodo brothers",
+                "Nitros Oxide"
+            ],
+            "question": "Which of these characters is NOT a boss in Crash Bash?",
+            "type": "multiple"
+        },
+        {
+            "category": "General Knowledge",
+            "correct_answer": "Horse",
+            "difficulty": "medium",
+            "incorrect_answers": [
+                "Weave",
+                "Guitar",
+                "Boat"
+            ],
+            "question": "In ancient Greece, if your job were a &quot;hippeus&quot; which of these would you own?",
+            "type": "multiple"
+        }
+    ]
+}
