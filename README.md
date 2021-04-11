@@ -18,7 +18,7 @@ regex
 from enum -> IntFlag, auto
 tkinter
 ---------
-Required:
+Required for the homework projects:
 json
 sys
 random
