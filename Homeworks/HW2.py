@@ -1,7 +1,5 @@
 #Explain your work
 """
-
-    
 Program flow:
 1. There's the main function all the way down below. That's the starting point
 2. The main function implementation is right above it. I divided each operation into their own functions
@@ -28,6 +26,9 @@ go all the way back rather than looping through every submenu with return option
     (cause it's already too complex and I don't wanna check more test case scenarios')
     c. On exit (both normally and in the case of ctrl+c exit) I update the json file with the information
 3. All options are in the menu. Each menu item is it's own function.
+4. Util import holds all the large print statement bodies and some helper functions
+I should probably move ALL string-related stuff there but it didn't help a lot with the file size when I thought about it
+so I just have some one or two liner print statements in between the logic
    
 Now the underlying stuff:
 1. I'm holding the data in a dictionary in "username":"password" format
@@ -39,6 +40,8 @@ but Python built-in json library returns a dictionary on parsing which is quite 
 """
 
 import json
+import util
+
 """
 MAIN FLOW:
     Roleplay as an evil corp, print some evil corp stuff
@@ -73,102 +76,6 @@ EXTRAS:
     1-) Change file into db (python apparently has sqlite built in)
     2-) Username - password syntax check (regex or str.issomething() stuff)
 """
-
-# HELPER FUNCTIONS
-# Input = String, username to check
-# Output = Boolean, whether the username is valid or not
-def checkUsername(username):
-    #TODO: I probably should set up some limitations for the username - password stuff
-    #ex: character type, length etc
-    
-    if (len(username) == 0) or (username.isspace()):
-        print("Username must have at least a single character that isn't a whitespace character!")
-        print("Returning to the previous Menu...\n")
-        return False
-    
-    return True
-    
-# Input = String, password to check
-# Output = Boolean, whether the password is valid or not
-def checkPassword(password):
-    #TODO: I probably should set up some limitations for the username - password stuff
-    #ex: character type, length etc
-    
-    if (len(password) == 0):
-        print("Password must have at least a single character!")
-        print("Returning to the previous Menu...\n")
-        return False
-    
-    return True
-
-
-def receiveAccountInfoFromUser():
-    password = "Invalid"
-    username = input("Please enter your username: ")
-    if(not checkUsername(username)):
-        return username, password, False
-    
-    password = input("Please enter your password: ")
-    if(not checkPassword(password)):
-        return username, password, False
-    
-    return username, password, True
-
-
-def buildMainMenuString():
-    
-    # Apparently, list of strings is way faster than concatting strings one by one:
-    # https://waymoot.org/home/python_string/
-    menuStringList = []
-
-    menuStringList.append("\t\"Nec Dei, Nec Reges. Solummodo homines.\"\n")
-    menuStringList.append("\t\t      -The Evil Corp™          \n\n")
-    menuStringList.append("\t\t              ▄▀▄               \n")
-    menuStringList.append("\t\t            ▄▀   ▀▄             \n")
-    menuStringList.append("\t\t          ▄▀  ▄▄▄  ▀▄           \n")
-    menuStringList.append("\t\t        ▄▀  ▄▀ ▄ ▀▄  ▀▄         \n")
-    menuStringList.append("\t\t      ▄▀     ▀▄▄▄▀     ▀▄       \n")
-    menuStringList.append("\t\t    ▄▀                   ▀▄     \n")
-    menuStringList.append("\t\t    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀     \n\n\n\n")  
-    menuStringList.append("Welcome to the Amazing User Interface™ developed by The Evil Corp™\n")
-    menuStringList.append("Please select the option you want to proceed with: \n")
-    menuStringList.append("\t1. Register or Update Account\n")
-    menuStringList.append("\t2. Delete Account\n")
-    menuStringList.append("\t3. List Account\n")
-    menuStringList.append("\t4. Exit app\n")
-    
-    return ''.join(menuStringList)
-
-def buildRegistrationMenu():
-    registrationMenuStringList = []
-    registrationMenuStringList.append("Welcome to the User Registration Menu™\n")
-    registrationMenuStringList.append("Please select an operation: \n")
-    registrationMenuStringList.append("\t1. Create new user\n")
-    registrationMenuStringList.append("\t2. Update existing user\n")
-    registrationMenuStringList.append("\t3. Return back to the menu\n")
-    
-    return ''.join(registrationMenuStringList)
-
-def buildDeleteAccountMenu():
-    deleteAccountMenuStringList = []
-    deleteAccountMenuStringList.append("Welcome to the Account Deletion Menu™\n")
-    deleteAccountMenuStringList.append("Please select an operation: \n")
-    deleteAccountMenuStringList.append("\t1. Delete an account\n")
-    deleteAccountMenuStringList.append("\t2. Return back to the menu\n")   
-    
-    return ''.join(deleteAccountMenuStringList)
-
-def buildListAccountMenu():
-    
-    listAccountMenuStringList = []
-    listAccountMenuStringList.append("Welcome to the List Account Info Menu™\n")
-    listAccountMenuStringList.append("Please login with your admin credentials to list all the accounts.\n")
-    listAccountMenuStringList.append("Please note that if you fail to login three times with the admin credentials\n")
-    listAccountMenuStringList.append("our team of professionals will come to your location to help you remind your login info.\n\n")
-    listAccountMenuStringList.append("Please select an operation:.\n")
-    listAccountMenuStringList.append("\t1. List all accounts\n")
-    listAccountMenuStringList.append("\t2. Return back to the menu\n")   
-    return ''.join(listAccountMenuStringList)
     
 # ==============================================================
 
@@ -191,30 +98,48 @@ def updateUser(users, username="", password=""):
     users[username] = password
     print("Password updated")
 
+"""Saves user info in the database
+
+    Parameters
+    ----------
+    users : Dictionary
+        The dictionary holding account information
+    file : File object
+        File for the database file
+
+    Returns
+    -------
+    None
+    """
 def saveUsers(users, file):
     file.close()
     file = open("userdb.json", "w")
     json.dump(users, file)
-    return
     
+"""Registers or updates a user into the "users" dictionary
 
-# json.dump(datalist, file)
-   
-# file.close()
-    
-    
+Parameters
+----------
+users : Dictionary
+    The dictionary holding account information
+
+Returns
+-------
+None
+"""
 def registerAccount(users):
-    #Build menu text
-    registrationMenuString = buildRegistrationMenu()
+    # Build the menu string to print it for input guidance
+    registrationMenuString = util.buildRegistrationMenu()
     
     while True:
         # Get the input for the menu choice
         choice = input(registrationMenuString)
         
         # switch over choices
+        # Choice 1 = Create a new user
         if(choice == "1"):
             #get user and password
-            username, password, isSuccessfullyRetreived = receiveAccountInfoFromUser()
+            username, password, isSuccessfullyRetreived = util.receiveAccountInfoFromUser()
             if(not isSuccessfullyRetreived):
                 continue
 
@@ -238,15 +163,18 @@ def registerAccount(users):
                 #If it's not in the DB, add it to the DB
                 users[username] = password
                 print(f"Username {username} is successfully created!")
-            
+        # Choice 2 = Update an existing user
         elif(choice == "2"):
-            username, password, isSuccessfullyRetreived = receiveAccountInfoFromUser()
+            #get user and password
+            username, password, isSuccessfullyRetreived = util.receiveAccountInfoFromUser()
             if(not isSuccessfullyRetreived):
                 continue
             
+            #Check if the username exists in the DB
             if(username in users):
                 updateUser(users, username, password)
             else:
+                # If username's not in the DB, ask if it should be created
                 print(f"Username {username} doesn't exist in the database.")
                 choice = input("Would you like to create a new entry? y/n\n")
                 if choice == "y":
@@ -259,7 +187,7 @@ def registerAccount(users):
                     # Wrong input, go back to the menu anyway
                     print("Wrong input. Going back to the main menu without any action")
                     continue
-                    
+        # Choice 3 = go back to the main menu
         elif(choice == "3"):
             print("Going back to the main menu...")
             break
@@ -267,41 +195,27 @@ def registerAccount(users):
             print("Undefined menu entry. Please try again.")
             continue
     
+"""Deletes a user from the "users" dictionary
+
+Parameters
+----------
+users : Dictionary
+    The dictionary holding account information
+
+Returns
+-------
+None
+"""
 def deleteAccount(users):
     #build menu to print
-    deleteAccountMenuString = buildDeleteAccountMenu()
+    deleteAccountMenuString = util.buildDeleteAccountMenu()
     
+    # The user has three chances to enter correct username / password
     trial = 3
     while True:
+        # Out of luck
         if(trial == 0):
-            print("You tried to login three times. For security purposes your session is terminated.")
-            print("Please remain seated while our forces are coming to join with you. Have a pleasant day! :)")
-            
-            # ETHICS RUINING MY FUN EXPLANATION BELOW!!:
-            print("BREAKING THE FOURTH WALL EXPLANATION: ")
-            print("I (Egemen) actually added a portion of a code here using ipinfo library that would print the ip information of the machine running the code")
-            print(" as well as other stuff (postal, city, country, region, geographical coordinates) as a joke")
-            print(", however I'm told by my more sensible friends that this might a bit...uncomfortable. I added the code snippet to the source anyway for you to check!")
-            
-            # The code to do that:
-            """
-            import ipinfo
-            
-            ip_address = None # Insert IP address here to get info on a specific one, if empty returns the host machine ip
-            access_token = "The token you get when you register a free account with the service goes in here"
-            handler = ipinfo.getHandler(access_token)
-            details = handler.getDetails(ip_address)
-            
-            print(f"IP: {details.ip}")
-            print(f"postal: {details.postal}")
-            print(f"city: {details.city}")
-            print(f"region: {details.region}")
-            print(f"country: {details.country}")
-            print(f"loc: {details.loc}")
-            print(f"org: {details.org}")
-            print(f"postal: {details.postal}")
-            print(f"timezone: {details.timezone}")
-            """
+            util.printDeleteAccountInfoText()
             break
 
         # Get the input for the menu choice
@@ -309,15 +223,11 @@ def deleteAccount(users):
         
         #Delete account choice
         if(choice == "1"):
-            # Print info
-            print("For your security, The Evil Corp™ requires your login information for this operation.")
-            print(f"You have {trial} chances to enter the correct credentials.")
-            print("In the event of not providing the correct information, please remain seated wherever you are")
-            print("until the security forces join you for interrogation.")
-            print("Please remember: There is nowhere to hide from The Evil Corp™. :)")
+            # Print about the extermination condition
+            util.printDeleteAccountTrialInfoText(trial)
             
             #get user and password
-            username, password, isSuccessfullyRetrieved = receiveAccountInfoFromUser()
+            username, password, isSuccessfullyRetrieved = util.receiveAccountInfoFromUser()
             
             if(not isSuccessfullyRetrieved):
                 continue
@@ -371,9 +281,22 @@ def deleteAccount(users):
             print("Undefined menu entry. Please try again.")
             continue
 
+"""Lists all accounts in the "users" dictionary
+
+Parameters
+----------
+users : Dictionary
+    The dictionary holding account information
+
+Returns
+-------
+None
+"""
 def listAccounts(users):
+    # Build the menu string to print it for input guidance
+    listAccountMenuText = util.buildListAccountMenu()
     
-    listAccountMenuText = buildListAccountMenu()
+    # How many times to enter the admin information
     trial = 3
     while True:
         if(trial == 0):
@@ -386,7 +309,7 @@ def listAccounts(users):
          
         if choice == "1":
             
-            username, password, isRetrieved = receiveAccountInfoFromUser()
+            username, password, isRetrieved = util.receiveAccountInfoFromUser()
             if(not isRetrieved):
                  continue
 
@@ -412,8 +335,9 @@ def listAccounts(users):
             continue
     
     
-# MAIN
+# Main method
 def main():
+    # Try to open the db file for read
     file = None
     try:
         file = open("userdb.json", "r")
@@ -424,6 +348,8 @@ def main():
     # REALLY dirty solution but I don't know what's the best way to handle
     # json load operation on an empty file
     # the library, for some reason, doesn't return a None object, just throws an exception
+    # An alternative would be to have the file filled with something initially but if the users delete it
+    # This way, the program wouldn't crash
     users = {}  # users is a dict of "username : password"
     try:
         users = json.load(file)
@@ -435,13 +361,14 @@ def main():
         users = {} #dummy value
         json.dump(users, file)
     finally:
+        # Load existing user data into memory from the db  
         file.close()
         file = open("userdb.json", "r")
         users = json.load(file) # users is a dict of "username : password"
 
-    try:
-        # Load existing user data into memory from the db    
-        mainMenuString = buildMainMenuString()
+    try:  
+        # Build the menu string to print it for input guidance
+        mainMenuString = util.buildMainMenuString()
         
         while True:
             # Menu input
