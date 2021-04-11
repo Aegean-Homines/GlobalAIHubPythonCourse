@@ -45,12 +45,8 @@ url = "https://opentdb.com/api.php?amount=10&type=multiple"
 def main():
     USE_RANDOM_TRIVIA_GENERATOR = True
     # before beginning, check if the program has an argument. If it does, set the trivia behavior to it
-    if len(sys.argv) > 1:
-        argument = sys.argv[1]
-        if(argument.lower() == "true"):
-            USE_RANDOM_TRIVIA_GENERATOR = True
-        elif(argument.lower() == "false"):
-            USE_RANDOM_TRIVIA_GENERATOR = False
+    if len(sys.argv) > 1 and sys.argv[1].lower() == "false":
+        USE_RANDOM_TRIVIA_GENERATOR = False
             
     # Introduction part explaining the rules
     print("WELCOME TO THE DIFFICULTRIVIA HOSTED BY THE EVIL CORP™!!!")
@@ -114,4 +110,7 @@ def main():
         print("The result: YOU WIN")
         print("Ooooh boi! Someone has a 200 IQ big brain! Well, you win I guess. What are you waiting for, a prize? Your employment is prize enough in itself, GET BACK TO WORK!")
 
-main()
+try:
+    main()
+except KeyboardInterrupt:
+    print("Oh escaping from the questions are we? As you wish.")

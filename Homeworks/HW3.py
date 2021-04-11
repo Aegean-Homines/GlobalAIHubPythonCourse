@@ -23,8 +23,9 @@ FLOW:
 
 
 import json # For testing purposes and easier use
+import sys # for cmd arguments
 
-USE_FILE = False # For testing
+STUDENT_FILE_NAME = "students.json"
 
 class Student:
     def __init__(self, name, midtermGrade = 0.0, projectGrade = 0.0, finalGrade = 0.0):
@@ -45,12 +46,18 @@ def main():
     # Empty table to hold students
     studentTable = {}
     studentCount = 5
-    print(f"Please enter {studentCount} students' information below: ")
+
+    USE_FILE = False # For testing
+    #Input check to see if I should update use_file
+    #the second part shouldn't explode in my face if Python is a decent language
+    #TODO: Double check that
+    if(len(sys.argv) > 1 and sys.argv[1].lower() == "true"):
+        USE_FILE = True
     
     # If use file is true, then it reads it from the .json file
     # Mainly cause it was easier for me instead of entering all 5 by hand
     if(USE_FILE):
-        studentFile = open("students.json", "r")
+        studentFile = open(STUDENT_FILE_NAME, "r")
         jsonTable = json.load(studentFile)
         for entry in jsonTable:
             studentName = entry
@@ -60,6 +67,7 @@ def main():
             
             registerStudent(studentTable, studentName, midtermGrade, projectGrade, finalGrade)
     else: # If not using the file, then enter 5 student info by hand...
+        print(f"Please enter {studentCount} students' information below: ")
         while studentCount > 0:
             studentName = input("StudentName: ")
             midtermGrade = float(input("Student's midterm grade: "))

@@ -218,25 +218,33 @@ def question2():
 
 
 # Main app
-Tests = [question1, question2]
 
-welcomeLine = "Please enter the question you want to test (1 for question 1, 2 for question 2 etc)\n"
-welcomeLine += "If you want to exit the app, please type \"Exit\" or \"Ctrl+C\": "
-while True:
+def main():
+    Tests = [question1, question2]
     
-    option = input(welcomeLine)
-    
-    if(option.lower() == "exit"):
-        break
-    else:
-        try:
-            option = int(option)
-        except ValueError:
-            print("Invalid value\n")
+    welcomeLine = "Please enter the question you want to test (1 for question 1, 2 for question 2 etc)\n"
+    welcomeLine += "If you want to exit the app, please type \"Exit\" or \"Ctrl+C\": "
+    while True:
+        
+        option = input(welcomeLine)
+        
+        if(option.lower() == "exit"):
+            print("See ya!")
+            break
+        else:
+            try:
+                option = int(option)
+            except ValueError:
+                print("Invalid value\n")
+                continue
+            
+        if(option > 2 or option < 1):
+            print("Please enter the correct numeric value as input.")
             continue
         
-    if(option > 2 or option < 1):
-        print("Please enter the correct numeric value as input.")
-        continue
-    
-    Tests[option-1]()
+        Tests[option-1]()
+
+try:
+    main()
+except KeyboardInterrupt:
+    print("\nGoodbye!")

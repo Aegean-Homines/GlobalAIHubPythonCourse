@@ -7,6 +7,7 @@ so should be easy to check out what each function does
     a. Register/Update account
     b. Delete account
     c. List accounts
+    d. Login
     NOTE: 
     To list all accounts, you need the admin access information
     username: admin
@@ -67,6 +68,9 @@ MAIN FLOW:
         1-) Iterate over Dict
         2-) Print everything
     
+    Login:
+        1-) Login with the credentials
+    
     On exit:
         1-) Store dictionary in a file
         2-) Exit the app
@@ -78,6 +82,69 @@ EXTRAS:
 """
     
 # ==============================================================
+
+"""Login to the system
+
+    Parameters
+    ----------
+    users : Dictionary
+        The dictionary holding account information
+    
+
+    Returns
+    -------
+    None
+ """
+def login(users):
+    isLoggedInSuccessfully = False
+    
+    loginMenuString = util.buildLoginMenu()
+    loginRewardString = util.buildLoginRewardAscii()
+    remainingTries = 3
+    while True:
+         # Users successfully logging in get to enjoy the arrival of the Le Toucan 
+        if(isLoggedInSuccessfully):
+            print("\n")
+            print(loginRewardString)
+            print("\n")
+        
+        
+        if(remainingTries == 0):
+            print("\nYou tried to login three times. For security purposes your session is terminated.")
+            print("Please remain seated while our forces are coming to join with you. Have a pleasant day! :)")
+            break
+        
+        # Get the input for the menu choice
+        choice = input(loginMenuString)
+        
+        # switch over choices
+        # Choice 1 = Login
+        if(choice == "1"):
+            #get user and password
+            username, password, isSuccessfullyRetrieved = util.receiveAccountInfoFromUser()
+            
+            if(not isSuccessfullyRetrieved):
+                continue
+            
+            if(username in users):
+                if(users[username] == password):
+                    print(f"Correct credentials! Welcome {username}.")
+                    isLoggedInSuccessfully = True
+                    continue
+                else:
+                    print(f"The password for {username} is invalid. Please use the password registered to your account.")
+                    isLoggedInSuccessfully = False
+                    
+                remainingTries -= 1
+            else:
+                print(f"Username {username} not found. Please check your username again.")
+        elif(choice == "2"):
+            print("Please wait while we're returning you to the main menu.")
+            break
+        else:
+            print("Invalid input. Please try again.")
+            continue
+                
 
 """Updates user info in the users dictionary
 
@@ -93,7 +160,7 @@ EXTRAS:
     Returns
     -------
     None
-    """
+ """
 def updateUser(users, username="", password=""):
     users[username] = password
     print("Password updated")
@@ -211,10 +278,10 @@ def deleteAccount(users):
     deleteAccountMenuString = util.buildDeleteAccountMenu()
     
     # The user has three chances to enter correct username / password
-    trial = 3
+    remainingTries = 3
     while True:
         # Out of luck
-        if(trial == 0):
+        if(remainingTries == 0):
             util.printDeleteAccountInfoText()
             break
 
@@ -224,7 +291,7 @@ def deleteAccount(users):
         #Delete account choice
         if(choice == "1"):
             # Print about the extermination condition
-            util.printDeleteAccountTrialInfoText(trial)
+            util.printDeleteAccountTrialInfoText(remainingTries)
             
             #get user and password
             username, password, isSuccessfullyRetrieved = util.receiveAccountInfoFromUser()
@@ -241,7 +308,7 @@ def deleteAccount(users):
                 
                 #Credential check failed
                 if(password != oldpassword):
-                    trial -= 1
+                    remainingTries -= 1
                     print("However, the password entered is not the registered one.")
                     gobackChoice = input("Would you like to try again or would you like to go back to the main menu? y/n \n")
                     if(gobackChoice.lower() == "y"):
@@ -297,9 +364,9 @@ def listAccounts(users):
     listAccountMenuText = util.buildListAccountMenu()
     
     # How many times to enter the admin information
-    trial = 3
+    remainingTries = 3
     while True:
-        if(trial == 0):
+        if(remainingTries == 0):
             print("\nYou tried to login three times. For security purposes your session is terminated.")
             print("Please remain seated while our forces are coming to join with you. Have a pleasant day! :)")
             
@@ -321,10 +388,10 @@ def listAccounts(users):
                     print(f"\t{entry}:\t{users[entry]}")
                 continue
             else:
-                trial -= 1
+                remainingTries -= 1
                 print(f"Your username {username} or your password {password} doesn't match admin credentials\n")
                 print("Please enter admin credentials to use to this feature")
-                print(f"You have {trial} times left to login")
+                print(f"You have {remainingTries} times left to login")
                 continue
         elif choice == "2":
             print("Going back to the main menu...")
@@ -382,6 +449,8 @@ def main():
             elif choice == "3":
                 listAccounts(users)
             elif choice == "4":
+                login(users)
+            elif choice == "5":
                 break
             else:
                 print("Invalid input!")

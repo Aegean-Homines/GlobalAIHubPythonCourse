@@ -1,7 +1,62 @@
 # CONSTANTS
 DatabaseFileName = "userdb.json"
 
-# Menu print functions (HW2)
+# Menu print functions (HW2_Simplified)
+def buildSimplifiedMainMenuString():
+    menuStringList = []
+
+    menuStringList.append("\t\"Nec Dei, Nec Reges. Solummodo homines.\"\n")
+    menuStringList.append("\t\t      -The Evil Corp™          \n\n")
+    menuStringList.append("\t\t              ▄▀▄               \n")
+    menuStringList.append("\t\t            ▄▀   ▀▄             \n")
+    menuStringList.append("\t\t          ▄▀  ▄▄▄  ▀▄           \n")
+    menuStringList.append("\t\t        ▄▀  ▄▀ ▄ ▀▄  ▀▄         \n")
+    menuStringList.append("\t\t      ▄▀     ▀▄▄▄▀     ▀▄       \n")
+    menuStringList.append("\t\t    ▄▀                   ▀▄     \n")
+    menuStringList.append("\t\t    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀     \n\n\n\n")  
+    menuStringList.append("Welcome to the Amazing User Interface™ developed by The Evil Corp™\n")
+    menuStringList.append("Please select the option you want to proceed with: \n")
+    menuStringList.append("\t1. Create Account\n")
+    menuStringList.append("\t2. Login\n")
+    menuStringList.append("\t3. Exit app\n")
+    
+    return ''.join(menuStringList)
+
+def buildSimplifiedRegistrationMenu():
+    registrationMenuStringList = []
+    registrationMenuStringList.append("Welcome to the User Registration Menu™\n")
+    registrationMenuStringList.append("Please select an operation: \n")
+    registrationMenuStringList.append("\t1. Create new user\n")
+    registrationMenuStringList.append("\t2. Return back to the menu\n")
+    
+    return ''.join(registrationMenuStringList)
+
+def buildSimplifiedLoginMenu():
+    loginMenuStringList = []
+    loginMenuStringList.append("Welcome to the Login Menu™\n")
+    loginMenuStringList.append("Please login with your username and password.\n")
+    loginMenuStringList.append("Please select an operation:.\n")
+    loginMenuStringList.append("\t1. Login\n")
+    loginMenuStringList.append("\t2. Return back to the menu\n")   
+    return ''.join(loginMenuStringList)
+
+def buildSimplifiedLoginRewardAscii():
+    loginRewardStringList = []
+    loginRewardStringList.append("░░░░░░░░▄▄▄▀▀▀▄▄███▄░░░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░░░░░▄▀▀░░░░░░░▐░▀██▌░░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░░░▄▀░░░░▄▄███░▌▀▀░▀█░░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░░▄█░░▄▀▀▒▒▒▒▒▄▐░░░░█▌░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░▐█▀▄▀▄▄▄▄▀▀▀▀▌░░░░░▐█▄░░░░░░░░░░░\n")
+    loginRewardStringList.append("░▌▄▄▀▀░░░░░░░░▌░░░░▄███████▄░░░░░░\n")
+    loginRewardStringList.append("░░░░░░░░░░░░░▐░░░░▐███████████▄░░░\n")
+    loginRewardStringList.append("░░░░░le░░░░░░░▐░░░░▐█████████████▄\n")
+    loginRewardStringList.append("░░░░toucan░░░░░░▀▄░░░▐█████████████▄\n")
+    loginRewardStringList.append("░░░░░░has░░░░░░░░▀▄▄███████████████\n")
+    loginRewardStringList.append("░░░░░arrived░░░░░░░░░░░░█▀██████░░\n")
+ 
+    return ''.join(loginRewardStringList)
+    
+# Menu print functions (HW2_FullApp)
 def buildMainMenuString():
     
     # Apparently, list of strings is way faster than concatting strings one by one:
@@ -22,7 +77,8 @@ def buildMainMenuString():
     menuStringList.append("\t1. Register or Update Account\n")
     menuStringList.append("\t2. Delete Account\n")
     menuStringList.append("\t3. List Account\n")
-    menuStringList.append("\t4. Exit app\n")
+    menuStringList.append("\t4. Login\n")
+    menuStringList.append("\t5. Exit app\n")
     
     return ''.join(menuStringList)
 
@@ -56,6 +112,34 @@ def buildListAccountMenu():
     listAccountMenuStringList.append("\t1. List all accounts\n")
     listAccountMenuStringList.append("\t2. Return back to the menu\n")   
     return ''.join(listAccountMenuStringList)
+
+def buildLoginMenu():
+    loginMenuStringList = []
+    loginMenuStringList.append("Welcome to the Login Menu™\n")
+    loginMenuStringList.append("Please login with your username and password.\n")
+    loginMenuStringList.append("Please note that if you fail to login three times with your credentials\n")
+    loginMenuStringList.append("our team of professionals will come to your location to help you remind your login info.\n")
+    loginMenuStringList.append("by Any. Means. Necessary.\n\n")
+    loginMenuStringList.append("Please select an operation:.\n")
+    loginMenuStringList.append("\t1. Login\n")
+    loginMenuStringList.append("\t2. Return back to the menu\n")   
+    return ''.join(loginMenuStringList)
+
+def buildLoginRewardAscii():
+    loginRewardStringList = []
+    loginRewardStringList.append("░░░░░░░░▄▄▄▀▀▀▄▄███▄░░░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░░░░░▄▀▀░░░░░░░▐░▀██▌░░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░░░▄▀░░░░▄▄███░▌▀▀░▀█░░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░░▄█░░▄▀▀▒▒▒▒▒▄▐░░░░█▌░░░░░░░░░░░░\n")
+    loginRewardStringList.append("░▐█▀▄▀▄▄▄▄▀▀▀▀▌░░░░░▐█▄░░░░░░░░░░░\n")
+    loginRewardStringList.append("░▌▄▄▀▀░░░░░░░░▌░░░░▄███████▄░░░░░░\n")
+    loginRewardStringList.append("░░░░░░░░░░░░░▐░░░░▐███████████▄░░░\n")
+    loginRewardStringList.append("░░░░░le░░░░░░░▐░░░░▐█████████████▄\n")
+    loginRewardStringList.append("░░░░toucan░░░░░░▀▄░░░▐█████████████▄\n")
+    loginRewardStringList.append("░░░░░░has░░░░░░░░▀▄▄███████████████\n")
+    loginRewardStringList.append("░░░░░arrived░░░░░░░░░░░░█▀██████░░\n")
+ 
+    return ''.join(loginRewardStringList)
 
 def printDeleteAccountInfoText():
     print("You tried to login three times. For security purposes your session is terminated.")
