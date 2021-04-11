@@ -2,7 +2,7 @@
 ![](img/newlogo.png)
 
 **Course Date:** 05.04.2021  
-**Name:** Egemen
+**Name:** Egemen  
 **Surname:** Koku  
 **Email:** ekoku40@gmail.com  
 
